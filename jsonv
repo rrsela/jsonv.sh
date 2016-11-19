@@ -118,6 +118,11 @@ jsonv () {
   program="'FNR==NR{a[\$1]=\$2; next} {print $format}'"
   eval "gawk -F\\\t $program $tokens $map"
 
+  echo_log "Deleting temp files"
+  rm $tokens
+  rm $map
+  rm $json
+
   echo_log "Done."
   echo "=====================" >> $log
 }
